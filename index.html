@@ -41,5 +41,42 @@
       </span>
     </div>
   </div>
+
+  <div id="player" style="display: none;"></div>
+
+<script>
+  let player = document.getElementById("player");
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: 'NXLVnA9nWG4',
+      playerVars: {
+        autoplay: 1,
+        loop: 1,
+        mute: 1
+      }
+    });
+  }
+
+  function activateSound() {
+    if (player && typeof player.unMute === "function") {
+      player.unMute();
+      player.playVideo?.();
+      
+      // remove all listeners after unlocking audio
+      document.removeEventListener("click", activateSound);
+      document.removeEventListener("scroll", activateSound);
+      document.removeEventListener("mousemove", activateSound);
+      document.removeEventListener("keydown", activateSound);
+    }
+  }
+  
+  document.addEventListener("click", activateSound);
+  document.addEventListener("scroll", activateSound);
+  document.addEventListener("mousemove", activateSound);
+  document.addEventListener("keydown", activateSound);
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
